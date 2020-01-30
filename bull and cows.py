@@ -115,6 +115,7 @@ def result_recording(attempts: str, single_attempt: dict):
             to_merge.append(single_attempt)
     file.seek(0)
     file.write(f"{records_dictionary}")
+    file.close()
     print("Your game has been recorded to local ranking......")
 
 
