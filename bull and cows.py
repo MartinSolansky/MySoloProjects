@@ -94,26 +94,28 @@ def create_single_attempt():
     return attempt
 
 def result_recording(attempts: str, single_attempt: dict):
-    with open("bull_and_cow_records.txt",
-              "r+") as file:
-        records_dictionary = file.read()
-        if not records_dictionary:
-            records_dictionary = {}
-        else:
-            records_dictionary = eval(records_dictionary)
+    try:
+        file = open("bull_and_cow_records.txt", "r+")
+    except (FileNotFoundError):
+        file = open("bull_and_cow_records.txt", "w+")
+    records_dictionary = file.read()
+    if not records_dictionary:
+        records_dictionary = {}
+    else:
+        records_dictionary = eval(records_dictionary)
 
-        if attempts not in records_dictionary.keys():
-            records_dictionary[f"{attempts}"] = single_attempt
-        else:
-            to_merge = records_dictionary.get(f"{attempts}")
-            if type(to_merge) == dict:
-                to_merge = (to_merge, single_attempt)
-                records_dictionary[f"{attempts}"] = to_merge
-            elif type(to_merge) == list:
-                to_merge.append(single_attempt)
-        file.seek(0)
-        file.write(f"{records_dictionary}")
-        print("Your game has been recorded to local ranking......")
+    if attempts not in records_dictionary.keys():
+        records_dictionary[f"{attempts}"] = single_attempt
+    else:
+        to_merge = records_dictionary.get(f"{attempts}")
+        if type(to_merge) == dict:
+            to_merge = (to_merge, single_attempt)
+            records_dictionary[f"{attempts}"] = to_merge
+        elif type(to_merge) == list:
+            to_merge.append(single_attempt)
+    file.seek(0)
+    file.write(f"{records_dictionary}")
+    print("Your game has been recorded to local ranking......")
 
 
 def time_taken(start_time, end_time):
