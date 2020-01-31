@@ -13,7 +13,6 @@ f"""Hi {name}!
 I've generated a random 4 digit number for you.
 Let's play a bulls and cows game.""")
     TEMPLATE = generate_number()
-    print(TEMPLATE)
     start_time = time.time()
     user_guess = guess()
     guess_number = 1
