@@ -7,18 +7,24 @@ class Matrix:
         self.dimensions = self.define_itself()
         self.width = self.dimensions[0]
         self.height = self.dimensions[1]
+        self.body = []
+
+    @staticmethod
+    def get_dimension(dimension_name):
+        while True:
+            try:
+                dimension = int(input(f"{dimension_name}: "))
+                return dimension
+            except ValueError:
+                print("This is not valid data. Please enter valid dimension")
+                continue
 
     def define_itself(self):
         """This function will prompt user to input width and height parameters of given matrix"""
-        while True:
-            try:
-                print(f"Matrix {self.name} dimensions:")
-                a_width = int(input("width: "))
-                a_height = int(input("height: "))
-            except ValueError:
-                print("This is not valid data. Please enter valid dimensions")
-                continue
-            return a_width, a_height
+        print(f"Matrix {self.name} dimensions:")
+        a_width = self.get_dimension("width")
+        a_height = self.get_dimension("height")
+        return a_width, a_height
 
     def construct_itself(self):
         """Function which prompt user to input elements (as integers) of matrix
@@ -29,14 +35,14 @@ class Matrix:
             while True:
                 try:
                     row = list(map(int, input("").split()))
+                    if len(row) < self.width or len(row) > self.width:
+                        print(f"Invalid row: Row need to be {self.width} numbers long and separated by spaces.")
+                        continue
+                    result.append(row)
+                    break
                 except ValueError:
                     print("Elements have to be number!")
                     continue
-                if len(row) < self.width or len(row) > self.width:
-                    print(f"Invalid row: Row need to be {self.width} numbers long and separated by spaces.")
-                    continue
-                break
-            result.append(row)
         print("")
         self.body = result
 
