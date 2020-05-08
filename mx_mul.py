@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-
+# Matrix multiplication utility without any mathematical library.
+# All variables are handled at runtime
 
 class Matrix:
     def __init__(self, name):
