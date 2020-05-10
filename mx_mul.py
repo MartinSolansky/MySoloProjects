@@ -13,10 +13,11 @@ class Matrix:
 
     @staticmethod
     def get_dimension(dimension_name):
+        """Function prompt user for valid dimension of given matrix"""
         while True:
             try:
                 dimension = int(input(f"{dimension_name}: "))
-                if dimension < 1:
+                if dimension < 1 or dimension % 1 != 0:
                     raise ValueError
                 return dimension
             except ValueError:
