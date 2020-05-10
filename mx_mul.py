@@ -2,6 +2,7 @@
 # Matrix multiplication utility without any mathematical library.
 # All variables are handled at runtime
 
+
 class Matrix:
     def __init__(self, name):
         self.name = name
@@ -15,6 +16,8 @@ class Matrix:
         while True:
             try:
                 dimension = int(input(f"{dimension_name}: "))
+                if dimension < 1:
+                    raise ValueError
                 return dimension
             except ValueError:
                 print("This is not valid data. Please enter valid dimension")
