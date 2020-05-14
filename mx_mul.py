@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # Matrix multiplication utility without any mathematical library.
 # All variables are handled at runtime
+# Created by: Martin Solansky
 
 
 class Matrix:
@@ -14,15 +15,19 @@ class Matrix:
     @staticmethod
     def get_dimension(dimension_name):
         """Function prompt user for valid dimension of given matrix"""
-        while True:
+        loop = 5
+        while loop >= 0:
             try:
                 dimension = int(input(f"{dimension_name}: "))
                 if dimension < 1 or dimension % 1 != 0:
                     raise ValueError
                 return dimension
             except ValueError:
-                print("This is not valid data. Please enter valid dimension")
-                continue
+                print(f"This is not valid data. Please enter valid dimension.\nRemaining attempts: {loop}")
+                loop -= 1
+
+        ending = input("To much invalid data, learn to read!\nPress enter to end utility. ")
+        raise KeyboardInterrupt
 
     def define_itself(self):
         """This function will prompt user to input width and height parameters of given matrix"""
@@ -37,17 +42,19 @@ class Matrix:
         result = []
         print(f"Matrix {self.name} values:")
         for _ in range(self.height):
-            while True:
+            loop = 5
+            while loop:
                 try:
                     row = list(map(int, input("").split()))
                     if len(row) < self.width or len(row) > self.width:
                         print(f"Invalid row: Row need to be {self.width} numbers long and separated by spaces.")
+                        loop -= 1
                         continue
                     result.append(row)
                     break
                 except ValueError:
                     print("Elements have to be number!")
-                    continue
+                    loop -= 1
         print("")
         self.body = result
 
@@ -63,7 +70,6 @@ class Matrix:
                 new_row.append(str(partial_result))
             new_matrix.append(new_row)
         return new_matrix
-
 
 
 def printing_result(operation_result):
