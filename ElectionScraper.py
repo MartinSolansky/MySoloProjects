@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+# Election scraper
+# Utility scrape results for 2017 election to Poslanecka Snemovna
+# Result are saved to newly created file
+# Should be compatible with all OS, report bugs please to: dixecz@gmail.com
+# Created by: Martin Solansky
+
 import csv
 import os
 import sys
