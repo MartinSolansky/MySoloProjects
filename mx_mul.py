@@ -4,7 +4,7 @@
 # Created by: Martin Solansky
 
 
-class Matrix:
+class Matrix(object):
     def __init__(self, name):
         self.name = name
         self.dimensions = self.define_itself()
