@@ -57,6 +57,7 @@ def get_district_url(district_name: str):
     return district_url
 
 def csv_recording(list_of_results: list, file_name: str):
+    """Function responsible for saving (and creating if necessary) results of scraping into csv file"""
     header = [item for item in list_of_results[0]]
     with open(f'{file_name}.csv', 'w+', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=header)
